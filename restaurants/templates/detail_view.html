@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+{% for item in restaurants %}
+<ul>
+	<li>Name: {{item.Name}}</li>
+	<li>{{item.content}}</li>
+	<li>created on: {{item.created}}</li>
+	<li>updated on: {{item.updated}}</li>
+
+
+
+</ul>
+{% endfor %}
+</body>
+</html>
