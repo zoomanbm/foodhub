@@ -20,5 +20,6 @@ from restaurants import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant', views.list),
+    path('details/<int:restaurant_id>/', views.detail, name="detail"),
 ]
 

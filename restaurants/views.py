@@ -1,33 +1,16 @@
 from django.shortcuts import render
+from .models import Restaurant
+from .models import Detail_Restaurant
 
 # Create your views here.
 def  list(request):
 	context = {
-		"restaurants":[
-		{
-		"Name": "MR.Zee's",
-		"content": "American Diner",
-		"created": "2018--02-07",
-		"updated": "2018--02-08",
-		},
-		{
-		"Name": "MR.Bee's",
-		"content": "Indian Diner",
-		"created": "2018--02-07",
-		"updated": "2018--02-08",
-		},
-		{
-		"Name": "MR.A's",
-		"content": "Jamaican Diner",
-		"created": "2018--02-07",
-		"updated": "2018--02-08",
-		},
-		{
-		"Name": "MR.D's",
-		"content": "Italian Diner",
-		"created": "2018--02-07",
-		"updated": "2018--02-08",
-		},
-		]
+		"restaurants": Restaurant.objects.all(),
 	}
-	return render(request, 'detail_view.html', context)
+	return render(request, 'list_view.html', context)
+
+def  detail(request, restaurant_id):
+	info = {
+		"detail": Restaurant.objects.get(id=restaurant_id),
+	}
+	return render(request, 'detail_view.html', info)

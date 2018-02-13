@@ -8,5 +8,14 @@ class Restaurant(models.Model):
 	closing_time = models.TimeField()
 
 	def __str__(self):
-		return self.title
+		return self.name
+
+class Detail_Restaurant(models.Model):
+	name = models.CharField(max_length=255)
+	owner = models.CharField(max_length=255)
+	number_employees = models.CharField(max_length=255)
+	name_manager = models.CharField(max_length=255)
+
+	def __str__(self):
+		return self.name
 		
