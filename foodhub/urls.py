@@ -19,7 +19,10 @@ from restaurants import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurant', views.list),
-    path('details/<int:restaurant_id>/', views.detail, name="detail"),
+    path('restaurant/', views.list, name = 'restaurant_list'),
+    path('details/<int:restaurant_id>/', views.detail, name="restaurant_detail"),
+    path('create/', views.create, name="restaurant_create"),
+    path('update/<int:restaurant_id>/', views.update, name="restaurant_update" ),
+    path('delete/<int:restaurant_id>/', views.restaurant_delete, name='delete'),
 ]
 

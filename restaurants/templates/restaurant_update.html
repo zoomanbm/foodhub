@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update</title>
+</head>
+<body>
+	<form action="{% url 'restaurant_update' restaurant_id=restaurant_obj.id %}" method="POST">		
+	{%csrf_token%}
+	{{update_form.as_p}}
+	<input type="submit" value="Update">
+</body>
+</html>

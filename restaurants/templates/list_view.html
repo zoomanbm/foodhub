@@ -1,18 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Document</title>
-</head>
-<body>
-{% for item in restaurants %}
-<ul>
-	<a href= "{% url 'detail' restaurant_id=item.id %}"><li>Name: {{item.name}}</li></a>
-	<li>Description: {{item.description}}</li>
-	<li>opening time: {{item.opening_time}}</li>
-	<li>closing time: {{item.closing_time}}</li>
+{% extends "base.html" %}
+
+{% block name_me %}
+	List
+{% endblock name_me %}
+
+{% block stuff %}	
+<div class="row">
+	{% for item in restaurants %}
+	<ul>
+	<div class="card" style="width: 18rem;">
+  	<div class="card-body">
+    <h5 class="card-title">{{item.name}}</h5>
+    <p class="card-text">{{item.description}}</p>
+    <a href="{% url 'restaurant_update' restaurant_id=item.id %}" class="card-link"><button type="button" class="btn btn-danger">Update</button> </a>
+    <a href="{% url 'restaurant_detail' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Details</button> </a>
+  	<a href="{% url 'delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button> </a>
+  	</div>	
+
+	</ul>
+	{% endfor %}
+
+<brk>
+
+<a href="{% url 'restaurant_create' %}"><button type="button" class="btn btn-danger">Add A New Restaurant</button> </a>
+</div>	
 
 
-</ul>
-{% endfor %}
-</body>
-</html>
+{% endblock stuff %}
