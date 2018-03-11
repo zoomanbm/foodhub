@@ -7,8 +7,20 @@
 <ul>
 	<li>Details: {{detail.name}}</li>
 	<li>Description: {{detail.description}}</li>
+	{{detail.image}}
 
-	
+<div class="card">
+	{%if detail.image %}
+		<img src="{{detail.image.url}}" alt="Card image cap">
+	{% endif %}
+</div>
+
+<ul>
+	{% for item in items %}
+		<li>{{item.name}}</li>
+		<li>{{item.description}}</li>
+		<li>{{item.price}}</li>
+	{% endfor %}
 
 
 

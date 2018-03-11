@@ -14,8 +14,21 @@
     <p class="card-text">{{item.description}}</p>
     <a href="{% url 'restaurant_update' restaurant_id=item.id %}" class="card-link"><button type="button" class="btn btn-danger">Update</button> </a>
     <a href="{% url 'restaurant_detail' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Details</button> </a>
-  	<a href="{% url 'delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button> </a>
-  	</div>	
+  	<a href="{% url 'delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button> 
+    </a>
+  	<button class="btn btn-secondary" onclick="check({{item.id}})"> 
+      <span id="star-number-{{item.id}}">{{item.favorite_set.count}} </i> </span>
+      <i id="star-color-{{item.id}}" 
+      class="fas fa-star {% if item in my_favorites %}text-danger{% endif %}">
+        
+      </i>
+      
+    </button>  </a>
+
+
+
+
+    </div>	
 
 	</ul>
 	{% endfor %}
@@ -24,6 +37,34 @@
 
 <a href="{% url 'restaurant_create' %}"><button type="button" class="btn btn-danger">Add A New Restaurant</button> </a>
 </div>	
+<script> 
+  function press(){
+    alert ("I like it !")
+
+  }
+</script>
+<script> 
+  function check(id){
+    $.ajax({
+      type:"GET",
+      url: "/favorite/"+id,
+      error:function(){
+        console.log("Yo couldn't do it!")
+      },
+      success: function(data){
+        console.log(data);
+        $("#star-number-"+id).text(data.count);
+        if(data.action==="favorite"){
+          $("#star-color-"+id).addClass("text-danger");
+        }
+        else{
+          $("#star-color-"+id).removeClass("text-danger");
+        }
+      }
+
+    })
+  }
+</script>
 
 
 {% endblock stuff %}
